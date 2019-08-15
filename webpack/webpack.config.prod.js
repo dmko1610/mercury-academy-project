@@ -36,7 +36,16 @@ module.exports = merge(common, {
           'css-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '/assets/[path][name].[ext]'
+          }
+        }
+      },
     ]
   }
 });
