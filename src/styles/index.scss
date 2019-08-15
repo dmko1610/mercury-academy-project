@@ -44,11 +44,18 @@ body {
           letter-spacing: 0.2px;
           text-align: center;
         }
-
-        .email-field, 
-        .password-field {
-
-        }
+      }
+      .signed-in {        
+        display: flex;
+        width: 40vw;
+        height: 50vh;
+        background-color: white;
+        position: relative;
+        float: left;
+        left: 50%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
   }
