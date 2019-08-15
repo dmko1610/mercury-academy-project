@@ -7,7 +7,9 @@ let hiddenForm = document.querySelector('.signed-in');
 let img = document.createElement("img");
 let h2 = document.createElement("h2");
 let errorMessage = document.createElement("p");
-
+errorMessage.innerHTML = "E-Mail or password is incorrect";
+form.appendChild(errorMessage);
+document.querySelector(".button-submit").className = 'error';
 hiddenForm.style.display = 'none';
 document.querySelector(".button-submit").addEventListener("click", function () {
     let login = document.querySelector('.email-field').value;
