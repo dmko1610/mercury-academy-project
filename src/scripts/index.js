@@ -7,22 +7,45 @@ let hiddenForm = document.querySelector('.signed-in');
 let img = document.createElement("img");
 let h2 = document.createElement("h2");
 let errorMessage = document.createElement("p");
+let emptyPasswordMessage = document.createElement("p");
+let emptyEmailMessage = document.createElement("p");
 // from
-errorMessage.innerHTML = "E-Mail or password is incorrect";
-form.appendChild(errorMessage);
+// errorMessage.innerHTML = "E-Mail or password is incorrect";
+// form.appendChild(errorMessage);
 
-document.querySelector(".button-submit").className = 'error';
-document.querySelector('.email-field').className = 'error-input-field';
-document.querySelector('.password-field').className = 'error-input-field';
+// document.querySelector(".button-submit").className = 'error';
+// document.querySelector('.email-field').className = 'error-input-field';
+// document.querySelector('.password-field').className = 'error-input-field';
 // to
 hiddenForm.style.display = 'none';
 document.querySelector(".button-submit").addEventListener("click", function () {
-    let login = document.querySelector('.email-field').value;
-    let pass = document.querySelector('.password-field').value;
+    let login = document.querySelector('#email').value;
+    let pass = document.querySelector('#pass').value;
 
-    if (!login || !pass) {
-        errorMessage.innerHTML = "E-Mail or password is incorrect";
+    errorMessage.innerHTML = "E-Mail or password is incorrect";
+    emptyEmailMessage.innerHTML = "E-Mail field is empty.";
+    emptyPasswordMessage.innerHTML = "Password field is empty";
+
+    if (!login && !pass) {
+        if (document.querySelector('p')) document.querySelector('p').remove();
+        document.querySelector("#submit").className = 'error';
         form.appendChild(errorMessage);
+        document.querySelector('#email').className = 'error-input-field';
+        document.querySelector('#pass').className = 'error-input-field';
+        return;
+    } else if (!login) {
+        if (document.querySelector('p')) document.querySelector('p').remove();
+        document.querySelector("#submit").className = 'error';
+        form.appendChild(emptyEmailMessage);
+        document.querySelector('#email').className = 'error-input-field';
+        document.querySelector('#pass').className = 'password-field';
+        return;
+    } else if (!pass) {
+        if (document.querySelector('p')) document.querySelector('p').remove();
+        document.querySelector("#submit").className = 'error';
+        form.appendChild(emptyPasswordMessage);
+        document.querySelector('#pass').className = 'error-input-field';
+        document.querySelector('#email').className = 'email-field';
         return;
     }
 
@@ -52,6 +75,7 @@ document.querySelector(".button-submit").addEventListener("click", function () {
             case 400:
                 errorMessage.innerHTML = "E-Mail or password is incorrect";
                 form.appendChild(errorMessage);
+
                 console.log('Bad Request: ' + response.status);
                 break;
             case 500:
@@ -59,16 +83,14 @@ document.querySelector(".button-submit").addEventListener("click", function () {
                 break;
 
         }
-        // if (response.status !== 200) {
-        //     console.log('Looks like there was a problem. Status Code: ' +
-        //         response.status);
-        //     return;
-        // }
-
     });
 });
 
 document.querySelector('.button-logout').addEventListener("click", function () {
     hiddenForm.style.display = 'none';
     form.style.display = '';
+    document.querySelector('p').remove();
+    document.querySelector('#pass').className = 'password-field';
+    document.querySelector('#email').className = 'email-field';
+    document.querySelector("#submit").className = 'button-submit';
 });
