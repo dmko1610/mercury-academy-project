@@ -9,15 +9,15 @@ let h2 = document.createElement("h2");
 let errorMessage = document.createElement("p");
 let emptyPasswordMessage = document.createElement("p");
 let emptyEmailMessage = document.createElement("p");
-// from
-// errorMessage.innerHTML = "E-Mail or password is incorrect";
-// form.appendChild(errorMessage);
 
-// document.querySelector(".button-submit").className = 'error';
-// document.querySelector('.email-field').className = 'error-input-field';
-// document.querySelector('.password-field').className = 'error-input-field';
-// to
-hiddenForm.style.display = 'none';
+
+
+// hiddenForm.style.display = 'none';
+img.src = 'https://api.adorable.io/avatars/285/abott@adorable.png';
+h2.innerHTML = 'Helena Joseph';
+hiddenForm.appendChild(h2);
+hiddenForm.appendChild(img);
+form.style.display = 'none';
 document.querySelector(".button-submit").addEventListener("click", function () {
     let login = document.querySelector('#email').value;
     let pass = document.querySelector('#pass').value;
@@ -30,6 +30,7 @@ document.querySelector(".button-submit").addEventListener("click", function () {
         if (document.querySelector('p')) document.querySelector('p').remove();
         document.querySelector("#submit").className = 'error';
         form.appendChild(errorMessage);
+        document.querySelector('.form-login').className += ' form-login-error';
         document.querySelector('#email').className = 'error-input-field';
         document.querySelector('#pass').className = 'error-input-field';
         return;
@@ -37,6 +38,7 @@ document.querySelector(".button-submit").addEventListener("click", function () {
         if (document.querySelector('p')) document.querySelector('p').remove();
         document.querySelector("#submit").className = 'error';
         form.appendChild(emptyEmailMessage);
+        document.querySelector('.form-login').className += ' form-login-error';
         document.querySelector('#email').className = 'error-input-field';
         document.querySelector('#pass').className = 'password-field';
         return;
@@ -44,11 +46,14 @@ document.querySelector(".button-submit").addEventListener("click", function () {
         if (document.querySelector('p')) document.querySelector('p').remove();
         document.querySelector("#submit").className = 'error';
         form.appendChild(emptyPasswordMessage);
+        document.querySelector('.form-login').className += ' form-login-error';
         document.querySelector('#pass').className = 'error-input-field';
         document.querySelector('#email').className = 'email-field';
         return;
     }
-
+    // while (document.querySelector('.form-login-error')) {
+        
+    // }
     fetch('https://us-central1-mercdev-academy.cloudfunctions.net/login', {
         body: JSON.stringify({
             email: login,
@@ -70,12 +75,17 @@ document.querySelector(".button-submit").addEventListener("click", function () {
                     h2.innerHTML = data.name;
                     hiddenForm.appendChild(img);
                     hiddenForm.appendChild(h2);
+                    console.log(data);
+                    document.querySelector('.form-login').classList.remove('form-login-error');
                 });
                 break;
             case 400:
                 errorMessage.innerHTML = "E-Mail or password is incorrect";
                 form.appendChild(errorMessage);
-
+                document.querySelector('.form-login').className += ' form-login-error';
+                document.querySelector("#submit").className = 'error';
+                document.querySelector('#email').className = 'error-input-field';
+                document.querySelector('#pass').className = 'error-input-field';
                 console.log('Bad Request: ' + response.status);
                 break;
             case 500:
@@ -89,7 +99,7 @@ document.querySelector(".button-submit").addEventListener("click", function () {
 document.querySelector('.button-logout').addEventListener("click", function () {
     hiddenForm.style.display = 'none';
     form.style.display = '';
-    document.querySelector('p').remove();
+    // document.querySelector('p').remove();
     document.querySelector('#pass').className = 'password-field';
     document.querySelector('#email').className = 'email-field';
     document.querySelector("#submit").className = 'button-submit';

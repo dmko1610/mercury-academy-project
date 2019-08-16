@@ -1,7 +1,13 @@
-$base-font: Verdana,
-Geneva,
-Tahoma,
-sans-serif;
+@font-face {
+  font-family: 'Gotham Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gotham Medium'), url('/src/assets/GothamMedium.woff') format('woff');
+}
+
+$base-font: "Gotham Medium";
+$error-color: #ed4159;
+$font-color: #262626;
 
 @mixin button-submit {
   padding: 17px 60px;
@@ -10,7 +16,7 @@ sans-serif;
   color: white;
   font-family: $base-font;
   font-size: 15px;
-  background-color: #ed4159;
+  background-color: $error-color;
   box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
   border: none;
 }
@@ -23,7 +29,10 @@ sans-serif;
   background-color: #f1f1f1;
   font-family: $base-font;
   font-size: 16px;
-  font-weight: 600;
+
+  ::placeholder {
+    color: $font-color;
+  }
 }
 
 .error {
@@ -32,11 +41,11 @@ sans-serif;
   top: 80px;
 }
 
-.error-input-field {  
+.error-input-field {
   padding: 15px;
   margin: -10px 45px;
-  border-color: #ed4159;
-  color: #ed4159;
+  border-color: $error-color;
+  -webkit-text-fill-color: $error-color;
   border-radius: 5px;
   border-width: 1px;
   background-color: #f1f1f1;
@@ -46,11 +55,12 @@ sans-serif;
 }
 
 body {
+  background-image: url("/src/assets/background.png");
+  background-size: cover;
+  width: 100%;
+  height: 160vh;
+
   .root-container {
-    background-image: url("/src/assets/background.png");
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
 
     .W-Mercury-Development {
       position: absolute;
@@ -70,7 +80,7 @@ body {
         border-radius: 10px;
         display: flex;
         width: 600px;
-        height: 490px;
+        height: 390px;
         background-color: white;
         position: relative;
         float: left;
@@ -90,6 +100,7 @@ body {
           line-height: normal;
           letter-spacing: 0.2px;
           text-align: center;
+          color: $font-color;
         }
 
         .email-field,
@@ -108,43 +119,101 @@ body {
           padding: 10px;
           background-color: rgba(237, 65, 89, 0.25);
           border-radius: 5px;
-          color: #ed4159;
+          color: $error-color;
           font-size: $base-font;
           font-weight: bold;
         }
       }
 
+      .form-login-error {
+        height: 490px;
+      }
+
       .signed-in {
+        font-family: $base-font;
         display: flex;
-        width: 40vw;
-        height: 50vh;
+        width: 600px;
+        height: 390px;
+        border-radius: 10px;
         background-color: white;
         position: relative;
         float: left;
         left: 50%;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+          border-radius: 50%;
+          width: 22%;
+          position: relative;
+          top: 50px;
+          // height: auto;
+
+        }
+        .button-logout {
+          @include button-submit();
+          position: relative;
+          bottom: 40px;
+          // left: 50px;
+          // margin: 0 auto;
+        }
       }
     }
   }
-
-
 }
 
-@media screen and (max-width: 600px) {
-  body .root-container .W-Mercury-Development {
-    position: absolute;
-    top: 5vh;
-    left: 25vw;
-    width: 50vw;
-    height: 30vh;
+@media screen and (max-width: 650px) {
+  body {
+    height: 130vh;
+
+    .root-container {
+      .W-Mercury-Development {
+        position: absolute;
+        top: 1vh;
+        left: 18vw;
+        width: 60vw;
+        height: 50vh;
+      }
+    }
   }
 }
 
-@media screen and (max-width: 600px) {
-  .form-login {
-    width: 288px;
-    height: 344px;
+@media screen and (max-width: 320px) {
+  body {
+    height: 90vh;
+    .root-container {
+
+      .W-Mercury-Development {
+        position: absolute;
+        top: -95px;
+        left: 20vw;
+        width: 60vw;
+      }
+
+      .extra-block {
+        top: 20vh;
+        right: 40%;
+        .form-login {
+          left: 36%;
+          width: 280px;
+          // left: 1vw;
+          .email-field,
+          .password-field {
+            margin: 0 25px;
+
+          }
+          .error-input-field {
+            margin: 0 25px;
+          }
+          p {
+            font-size: 14px;
+            padding: 15px;
+            margin: 0 25px;
+            top: -100px;
+          }
+        }
+      }
+    }
   }
 }
