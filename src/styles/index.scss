@@ -1,4 +1,7 @@
-$base-font: Verdana, Geneva, Tahoma, sans-serif;
+$base-font: Verdana,
+Geneva,
+Tahoma,
+sans-serif;
 
 @mixin button-submit {
   padding: 17px 60px;
@@ -10,11 +13,36 @@ $base-font: Verdana, Geneva, Tahoma, sans-serif;
   background-color: #ed4159;
   box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
   border: none;
- }
+}
+
+@mixin input-field {
+  padding: 15px;
+  margin: -10px 45px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  font-family: $base-font;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .error {
   @include button-submit();
   position: relative;
-  top: 40px;
+  top: 80px;
+}
+
+.error-input-field {
+  padding: 15px;
+  margin: -10px 45px;
+  border-color: #ed4159;
+  color: #ed4159;
+  border-radius: 5px;
+  border-width: 1px;
+  background-color: #f1f1f1;
+  font-family: $base-font;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 body {
@@ -42,7 +70,7 @@ body {
         border-radius: 10px;
         display: flex;
         width: 600px;
-        height: 409px;
+        height: 490px;
         background-color: white;
         position: relative;
         float: left;
@@ -66,13 +94,7 @@ body {
 
         .email-field,
         .password-field {
-          padding: 15px;
-          margin: 0 45px;
-          border: none;
-          border-radius: 5px;
-          background-color: #f1f1f1;
-          font-family: $base-font;
-          font-weight: bold;
+          @include input-field();
         }
 
         .button-submit {
@@ -81,12 +103,18 @@ body {
 
         p {
           position: relative;
-          
+          top: -120px;
+          margin: 0 45px;
           padding: 10px;
           background-color: rgba(237, 65, 89, 0.25);
+          border-radius: 5px;
+          color: #ed4159;
+          font-size: $base-font;
+          font-weight: bold;
         }
       }
-      .signed-in {        
+
+      .signed-in {
         display: flex;
         width: 40vw;
         height: 50vh;

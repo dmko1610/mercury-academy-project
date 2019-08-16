@@ -7,9 +7,14 @@ let hiddenForm = document.querySelector('.signed-in');
 let img = document.createElement("img");
 let h2 = document.createElement("h2");
 let errorMessage = document.createElement("p");
+// from
 errorMessage.innerHTML = "E-Mail or password is incorrect";
 form.appendChild(errorMessage);
+
 document.querySelector(".button-submit").className = 'error';
+document.querySelector('.email-field').className = 'error-input-field';
+document.querySelector('.password-field').className = 'error-input-field';
+// to
 hiddenForm.style.display = 'none';
 document.querySelector(".button-submit").addEventListener("click", function () {
     let login = document.querySelector('.email-field').value;
@@ -32,20 +37,34 @@ document.querySelector(".button-submit").addEventListener("click", function () {
         method: 'POST',
     }
     ).then(response => {
-        if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-                response.status);
-            return;
+        switch (response.status) {
+            case 200:
+                response.json().then((data) => {
+                    if (document.querySelector('p')) document.querySelector('p').remove();
+                    form.style.display = 'none';
+                    hiddenForm.style.display = '';
+                    img.src = data.photoUrl;
+                    h2.innerHTML = data.name;
+                    hiddenForm.appendChild(img);
+                    hiddenForm.appendChild(h2);
+                });
+                break;
+            case 400:
+                errorMessage.innerHTML = "E-Mail or password is incorrect";
+                form.appendChild(errorMessage);
+                console.log('Bad Request: ' + response.status);
+                break;
+            case 500:
+                console.log('Internal Server Error: ' + response.status);
+                break;
+
         }
-        response.json().then((data) => {            
-            if (document.querySelector('p')) document.querySelector('p').remove();
-            form.style.display = 'none';
-            hiddenForm.style.display = '';
-            img.src = data.photoUrl;
-            h2.innerHTML = data.name;
-            hiddenForm.appendChild(img);
-            hiddenForm.appendChild(h2);
-        });
+        // if (response.status !== 200) {
+        //     console.log('Looks like there was a problem. Status Code: ' +
+        //         response.status);
+        //     return;
+        // }
+
     });
 });
 
