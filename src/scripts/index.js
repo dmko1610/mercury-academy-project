@@ -10,14 +10,7 @@ let errorMessage = document.createElement("p");
 let emptyPasswordMessage = document.createElement("p");
 let emptyEmailMessage = document.createElement("p");
 
-
-
-// hiddenForm.style.display = 'none';
-img.src = 'https://api.adorable.io/avatars/285/abott@adorable.png';
-h2.innerHTML = 'Helena Joseph';
-hiddenForm.appendChild(h2);
-hiddenForm.appendChild(img);
-form.style.display = 'none';
+hiddenForm.style.display = 'none';
 document.querySelector(".button-submit").addEventListener("click", function () {
     let login = document.querySelector('#email').value;
     let pass = document.querySelector('#pass').value;
@@ -51,9 +44,6 @@ document.querySelector(".button-submit").addEventListener("click", function () {
         document.querySelector('#email').className = 'email-field';
         return;
     }
-    // while (document.querySelector('.form-login-error')) {
-        
-    // }
     fetch('https://us-central1-mercdev-academy.cloudfunctions.net/login', {
         body: JSON.stringify({
             email: login,
@@ -69,13 +59,16 @@ document.querySelector(".button-submit").addEventListener("click", function () {
             case 200:
                 response.json().then((data) => {
                     if (document.querySelector('p')) document.querySelector('p').remove();
-                    form.style.display = 'none';
-                    hiddenForm.style.display = '';
-                    img.src = data.photoUrl;
-                    h2.innerHTML = data.name;
-                    hiddenForm.appendChild(img);
-                    hiddenForm.appendChild(h2);
-                    console.log(data);
+                    document.querySelector('#loader').className = 'loader';
+                    setTimeout(() => {
+                        form.style.display = 'none';
+                        hiddenForm.style.display = '';
+                        img.src = data.photoUrl;
+                        h2.innerHTML = data.name;
+                        hiddenForm.appendChild(h2);
+                        hiddenForm.appendChild(img);
+                        document.querySelector('#loader').classList.remove('loader');
+                    }, 1000);
                     document.querySelector('.form-login').classList.remove('form-login-error');
                 });
                 break;
@@ -97,10 +90,13 @@ document.querySelector(".button-submit").addEventListener("click", function () {
 });
 
 document.querySelector('.button-logout').addEventListener("click", function () {
-    hiddenForm.style.display = 'none';
-    form.style.display = '';
-    // document.querySelector('p').remove();
-    document.querySelector('#pass').className = 'password-field';
-    document.querySelector('#email').className = 'email-field';
-    document.querySelector("#submit").className = 'button-submit';
+    document.querySelector('#loader').className = 'loader';
+    setTimeout(() => {
+        hiddenForm.style.display = 'none';
+        form.style.display = '';
+        document.querySelector('#pass').className = 'password-field';
+        document.querySelector('#email').className = 'email-field';
+        document.querySelector("#submit").className = 'button-submit';
+        document.querySelector('#loader').classList.remove('loader');
+    }, 1000);
 });

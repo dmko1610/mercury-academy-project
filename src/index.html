@@ -9,13 +9,14 @@
 
 <body>
   <div class="root-container">
+    <div class="loader-container"><div id="loader"><div></div><div></div></div></div>
     <img src="/src/assets/w-mercury-development.svg" 
       class="W-Mercury-Development">
     <div class="extra-block">
       <form class="form-login" action="#" method="POST">
         <h2>Log In</h2>
-        <input class="email-field" id="email" type="email" name="email" placeholder="E-Mail">
-        <input class="password-field" id="pass" type="password" name="password"placeholder="Password">
+        <input class="email-field" id="email" type="email" name="email" placeholder="E-Mail" autocomplete="off">
+        <input class="password-field" id="pass" type="password" name="password"placeholder="Password" autocomplete="off">
         <input class="button-submit" id="submit" type="button" value="Login">
       </form>
       <form class="signed-in">
