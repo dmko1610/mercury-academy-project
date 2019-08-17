@@ -1,0 +1,259 @@
+@font-face {
+  font-family: 'Gotham Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Gotham Medium"), url("src/assets/GothamMedium.woff") format("woff"); }
+
+.error {
+  padding: 17px 60px;
+  margin: 0 auto;
+  border-radius: 30px;
+  color: white;
+  font-family: "Gotham Medium";
+  font-size: 15px;
+  background-color: #ed4159;
+  box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
+  border: none;
+  position: relative;
+  top: 80px; }
+  .error:hover {
+    background-color: #fff;
+    box-shadow: 0 6px 20px 0 rgba(237, 65, 89, 0.4);
+    color: #ed4159; }
+  .error:active {
+    box-shadow: 0 2px 10px 0 rgba(237, 65, 89, 0.4); }
+  .error:focus {
+    outline: 0; }
+
+.error-input-field {
+  padding: 15px;
+  margin: -10px 45px;
+  border-color: #ed4159;
+  -webkit-text-fill-color: #ed4159;
+  border-radius: 5px;
+  border-width: 1px;
+  background-color: #f1f1f1;
+  font-family: "Gotham Medium";
+  font-size: 16px;
+  font-weight: 600; }
+  .error-input-field:focus {
+    outline: 0; }
+
+body {
+  background-image: url("src/assets/background.png");
+  background-size: cover;
+  width: 100%;
+  height: 160vh; }
+  body .root-container .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    body .root-container .loader-container .loader {
+      position: relative;
+      width: 4%;
+      top: 67vh;
+      z-index: 10; }
+    body .root-container .loader-container .loader div {
+      position: absolute;
+      border: 4px solid #ed4159;
+      opacity: 1;
+      border-radius: 50%;
+      animation: loader-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+    body .root-container .loader-container .loader div:nth-child(2) {
+      animation-delay: -0.5s; }
+
+@keyframes loader-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1; }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0; } }
+  body .root-container .W-Mercury-Development {
+    position: absolute;
+    top: 20vh;
+    left: 35vw;
+    width: 30vw;
+    height: 10vh; }
+  body .root-container .extra-block {
+    position: relative;
+    float: right;
+    right: 50%;
+    top: 45vh; }
+    body .root-container .extra-block .form-login {
+      border-radius: 10px;
+      display: flex;
+      width: 600px;
+      height: 390px;
+      background-color: white;
+      position: relative;
+      float: left;
+      left: 50%;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-around; }
+      body .root-container .extra-block .form-login h2 {
+        align-content: space-around;
+        opacity: 0.8;
+        font-family: "Gotham Medium";
+        font-size: 24px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.2px;
+        text-align: center;
+        color: #262626; }
+      body .root-container .extra-block .form-login .email-field,
+      body .root-container .extra-block .form-login .password-field {
+        padding: 15px;
+        margin: -10px 45px;
+        border: none;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        font-family: "Gotham Medium";
+        font-size: 16px; }
+        body .root-container .extra-block .form-login .email-field ::placeholder,
+        body .root-container .extra-block .form-login .password-field ::placeholder {
+          color: #262626; }
+        body .root-container .extra-block .form-login .email-field:focus,
+        body .root-container .extra-block .form-login .password-field:focus {
+          outline: 0; }
+      body .root-container .extra-block .form-login .button-submit {
+        padding: 17px 60px;
+        margin: 0 auto;
+        border-radius: 30px;
+        color: white;
+        font-family: "Gotham Medium";
+        font-size: 15px;
+        background-color: #ed4159;
+        box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
+        border: none; }
+        body .root-container .extra-block .form-login .button-submit:hover {
+          background-color: #fff;
+          box-shadow: 0 6px 20px 0 rgba(237, 65, 89, 0.4);
+          color: #ed4159; }
+        body .root-container .extra-block .form-login .button-submit:active {
+          box-shadow: 0 2px 10px 0 rgba(237, 65, 89, 0.4); }
+        body .root-container .extra-block .form-login .button-submit:focus {
+          outline: 0; }
+      body .root-container .extra-block .form-login p {
+        position: relative;
+        top: -120px;
+        margin: 0 45px;
+        padding: 10px;
+        background-color: rgba(237, 65, 89, 0.25);
+        border-radius: 5px;
+        color: #ed4159;
+        font-size: "Gotham Medium";
+        font-weight: bold; }
+    body .root-container .extra-block .form-login-error {
+      height: 490px; }
+    body .root-container .extra-block .signed-in {
+      font-family: "Gotham Medium";
+      display: flex;
+      width: 600px;
+      height: 390px;
+      border-radius: 10px;
+      background-color: white;
+      position: relative;
+      float: left;
+      left: 50%;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: center; }
+      body .root-container .extra-block .signed-in h2 {
+        color: #535252;
+        font-size: 28px; }
+      body .root-container .extra-block .signed-in img {
+        border-radius: 50%;
+        width: 22%;
+        position: relative;
+        top: 50px; }
+      body .root-container .extra-block .signed-in .button-logout {
+        padding: 17px 60px;
+        margin: 0 auto;
+        border-radius: 30px;
+        color: white;
+        font-family: "Gotham Medium";
+        font-size: 15px;
+        background-color: #ed4159;
+        box-shadow: 0 4px 16px 0 rgba(237, 65, 89, 0.4);
+        border: none;
+        position: relative;
+        bottom: 40px; }
+        body .root-container .extra-block .signed-in .button-logout:hover {
+          background-color: #fff;
+          box-shadow: 0 6px 20px 0 rgba(237, 65, 89, 0.4);
+          color: #ed4159; }
+        body .root-container .extra-block .signed-in .button-logout:active {
+          box-shadow: 0 2px 10px 0 rgba(237, 65, 89, 0.4); }
+        body .root-container .extra-block .signed-in .button-logout:focus {
+          outline: 0; }
+
+@media screen and (max-width: 650px) {
+  body {
+    height: 130vh; }
+    body .root-container .loader {
+      top: 72vh; }
+    body .root-container .W-Mercury-Development {
+      position: absolute;
+      top: 1vh;
+      left: 18vw;
+      width: 60vw;
+      height: 50vh; }
+    body .root-container .extra-block .form-login,
+    body .root-container .extra-block .signed-in {
+      width: 450px; } }
+
+@media screen and (max-width: 460px) {
+  body {
+    height: 120vh; }
+    body .root-container .loader-container {
+      flex-direction: column;
+      top: 0; }
+    body .extra-block .form-login,
+    body .extra-block .signed-in {
+      width: 350px; } }
+
+@media screen and (max-width: 380px) {
+  body {
+    height: 90vh; }
+    body .root-container .loader-container {
+      flex-direction: column; }
+      body .root-container .loader-container .loader {
+        top: 48vh;
+        left: -7%; }
+    body .root-container .W-Mercury-Development {
+      position: absolute;
+      top: -95px;
+      left: 20vw;
+      width: 60vw; }
+    body .root-container .extra-block {
+      top: 20vh;
+      right: 40%; }
+      body .root-container .extra-block .form-login {
+        left: 36%;
+        width: 280px; }
+        body .root-container .extra-block .form-login .email-field,
+        body .root-container .extra-block .form-login .password-field {
+          margin: 0 25px; }
+        body .root-container .extra-block .form-login .error-input-field {
+          margin: 0 25px; }
+        body .root-container .extra-block .form-login p {
+          font-size: 14px;
+          padding: 15px;
+          margin: 0 25px;
+          top: -100px; }
+      body .root-container .extra-block .signed-in {
+        left: 36%;
+        width: 280px; } }
+
+
+/*# sourceMappingURL=bundle.css.map*/

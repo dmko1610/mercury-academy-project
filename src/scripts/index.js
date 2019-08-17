@@ -69,6 +69,7 @@ document.querySelector(".button-submit").addEventListener("click", function () {
                         hiddenForm.appendChild(img);
                         document.querySelector('#loader').classList.remove('loader');
                     }, 1000);
+                    document.querySelector("#submit").className = 'button-submit';
                     document.querySelector('.form-login').classList.remove('form-login-error');
                 });
                 break;
